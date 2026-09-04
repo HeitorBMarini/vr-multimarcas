@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { motorcycles } from '@/data/motorcycles'
 import { MessageCircle } from 'lucide-react'
@@ -81,17 +82,27 @@ export function MotorcyclesSection() {
                   : 'border-border hover:border-primary hover:bg-primary/5'
               }`}
             >
-              {/* Moto Icon */}
-              <div className="mb-4 h-40 flex items-center justify-center bg-white rounded-lg">
-                <motion.div
-                  animate={{
-                    rotate: selectedMoto.id === moto.id ? [0, 5, -5, 0] : 0,
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-5xl"
-                >
-                  🏍️
-                </motion.div>
+              {/* Moto Image */}
+              <div className="mb-4 h-40 flex items-center justify-center bg-white rounded-lg overflow-hidden relative">
+                {moto.image ? (
+                  <Image
+                    src={moto.image}
+                    alt={moto.name}
+                    fill
+                    className="object-contain p-2"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                ) : (
+                  <motion.div
+                    animate={{
+                      rotate: selectedMoto.id === moto.id ? [0, 5, -5, 0] : 0,
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="text-5xl"
+                  >
+                    🏍️
+                  </motion.div>
+                )}
               </div>
 
               {/* Content */}
@@ -139,20 +150,30 @@ export function MotorcyclesSection() {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Left - Image area */}
-              <div className="flex items-center justify-center bg-white rounded-xl">
-                <motion.div
-                  animate={{
-                    y: [0, -20, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                  className="text-9xl py-12"
-                >
-                  🏍️
-                </motion.div>
+              <div className="flex items-center justify-center bg-white rounded-xl relative min-h-[280px]">
+                {selectedMoto.image ? (
+                  <Image
+                    src={selectedMoto.image}
+                    alt={selectedMoto.name}
+                    fill
+                    className="object-contain p-6"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                ) : (
+                  <motion.div
+                    animate={{
+                      y: [0, -20, 0],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }}
+                    className="text-9xl py-12"
+                  >
+                    🏍️
+                  </motion.div>
+                )}
               </div>
 
               {/* Right - Details */}

@@ -8,6 +8,7 @@ export interface Motorcycle {
   name: string
   category: string
   price: string
+  image?: string
   motorizacao: SpecItem[]
   estrutura: SpecItem[]
 }
@@ -119,6 +120,7 @@ export const motorcycles: Motorcycle[] = [
     name: 'SHI 175S EFI',
     category: 'Trail | Injeção Eletrônica',
     price: 'Consulte',
+    image: '/motorcycles/shi-175s-efi.webp',
     motorizacao: [
       { label: 'Cilindrada', value: '175 cc (Injeção Eletrônica)' },
       { label: 'Tipo', value: 'Monocilíndrico, 4T, 2V, OHC' },
@@ -134,6 +136,7 @@ export const motorcycles: Motorcycle[] = [
     name: 'FREE 150 EFI',
     category: 'Scooter | Agilidade Urbana',
     price: 'Consulte',
+    image: '/motorcycles/free-150-efi.webp',
     motorizacao: [
       { label: 'Cilindrada', value: '149 cc (Injeção Eletrônica)' },
       { label: 'Câmbio', value: 'Automático (CVT)' },
@@ -149,6 +152,7 @@ export const motorcycles: Motorcycle[] = [
     name: 'JET 125SS EFI',
     category: 'CUB | Potência e Economia',
     price: 'Consulte',
+    image: '/motorcycles/jet-125ss-efi.webp',
     motorizacao: [
       { label: 'Cilindrada', value: '125 cc (Injeção Eletrônica)' },
       { label: 'Potência Máx.', value: '7,2 cv / 7500 RPM' },
@@ -165,6 +169,7 @@ export const motorcycles: Motorcycle[] = [
     name: 'NEW JET',
     category: 'CUB | O Novo Clássico',
     price: 'Consulte',
+    image: '/motorcycles/new-jet.webp',
     motorizacao: [
       { label: 'Cilindrada', value: '125 cc / 50 cc' },
       { label: 'Câmbio', value: '4 Marchas' },
