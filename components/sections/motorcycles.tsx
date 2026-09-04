@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { motorcycles as allMotorcycles, type Motorcycle } from '@/data/motorcycles'
@@ -12,16 +12,31 @@ const motorcycles = allMotorcycles.filter((moto): moto is Motorcycle & { image: 
   Boolean(moto.image)
 )
 
+const slideVariants = {
+  enter: (direction: number) => ({ x: direction > 0 ? 80 : -80, opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit: (direction: number) => ({ x: direction > 0 ? -80 : 80, opacity: 0 }),
+}
+
 export function MotorcyclesSection() {
   const [openMoto, setOpenMoto] = useState<(typeof motorcycles)[number] | null>(null)
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const [[activeIndex, direction], setActive] = useState<[number, number]>([0, 0])
+  const [isPaused, setIsPaused] = useState(false)
 
-  const scrollByCard = (direction: 'left' | 'right') => {
-    scrollRef.current?.scrollBy({
-      left: direction === 'left' ? -320 : 320,
-      behavior: 'smooth',
-    })
+  const active = motorcycles[activeIndex]
+
+  const goTo = (index: number) => {
+    const wrapped = (index + motorcycles.length) % motorcycles.length
+    setActive([wrapped, wrapped > activeIndex ? 1 : -1])
   }
+
+  useEffect(() => {
+    if (isPaused || openMoto) return
+    const timer = setInterval(() => {
+      setActive(([current]) => [(current + 1) % motorcycles.length, 1])
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [isPaused, openMoto])
 
   useEffect(() => {
     if (!openMoto) return
@@ -65,92 +80,128 @@ export function MotorcyclesSection() {
           </h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-4 rounded-full" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Arraste para o lado e clique na foto para ver a ficha técnica
+            Navegue pelos modelos e clique na foto para ver a ficha técnica
           </p>
         </motion.div>
 
-        {/* Motorcycles Carousel */}
-        <div className="relative">
+        {/* Spotlight Carousel */}
+        <div
+          className="relative mb-8"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <div className="bg-card border border-border rounded-2xl p-6 sm:p-10 overflow-hidden">
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={active.id}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
+              >
+                {/* Image */}
+                <button
+                  type="button"
+                  onClick={() => setOpenMoto(active)}
+                  aria-label={`Ver ficha técnica da ${active.name}`}
+                  className="relative h-64 sm:h-80 w-full bg-white rounded-xl overflow-hidden cursor-zoom-in group"
+                >
+                  <Image
+                    src={active.image}
+                    alt={active.name}
+                    fill
+                    className="object-contain p-6 transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority
+                  />
+                </button>
+
+                {/* Info */}
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wide text-primary mb-2">
+                    {active.category}
+                  </p>
+                  <h3 className="text-3xl sm:text-4xl font-bold mb-3">{active.name}</h3>
+                  <p className="text-2xl font-bold text-primary mb-6">{active.price}</p>
+
+                  <div className="grid grid-cols-2 gap-4 mb-8">
+                    {[...active.motorizacao, ...active.estrutura].slice(0, 4).map((spec) => (
+                      <div
+                        key={spec.label}
+                        className="bg-secondary/50 border border-border rounded-lg p-3"
+                      >
+                        <p className="text-xs text-muted-foreground mb-1">{spec.label}</p>
+                        <p className="text-sm font-semibold">{spec.value}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button variant="outline" onClick={() => setOpenMoto(active)}>
+                      Ver Ficha Técnica
+                    </Button>
+                    <Button
+                      className="bg-[#25d366] text-white hover:bg-[#20b858]"
+                      asChild
+                    >
+                      <a
+                        href={`https://wa.me/5548998146981?text=${encodeURIComponent(`Olá! Quero saber mais sobre a ${active.name}.`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        Falar com Vendedor
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Arrows */}
           <button
             type="button"
-            aria-label="Ver motos anteriores"
-            onClick={() => scrollByCard('left')}
+            aria-label="Moto anterior"
+            onClick={() => goTo(activeIndex - 1)}
             className="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-11 h-11 rounded-full bg-card border border-border text-foreground hover:border-primary hover:text-primary transition-colors shadow-lg"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
-
-          <div
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 scrollbar-gold"
-          >
-            {motorcycles.map((moto, index) => (
-              <motion.div
-                key={moto.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4, delay: (index % 4) * 0.08 }}
-                className="group p-6 rounded-xl border border-border hover:border-primary transition-all duration-300 flex-shrink-0 snap-start w-72 sm:w-80"
-              >
-                {/* Moto Image — click to open popup */}
-                <button
-                  type="button"
-                  onClick={() => setOpenMoto(moto)}
-                  aria-label={`Ver ficha técnica da ${moto.name}`}
-                  className="mb-4 h-40 w-full flex items-center justify-center bg-white rounded-lg overflow-hidden relative cursor-zoom-in"
-                >
-                  <Image
-                    src={moto.image}
-                    alt={moto.name}
-                    fill
-                    className="object-contain p-2 transition-transform duration-300 group-hover:scale-105"
-                    sizes="320px"
-                  />
-                </button>
-
-                {/* Content */}
-                <h3 className="text-xl font-bold mb-1">{moto.name}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{moto.category}</p>
-
-                {/* Price */}
-                <div className="text-primary font-bold text-lg mb-4">
-                  {moto.price}
-                </div>
-
-                {/* Quick Specs */}
-                <div className="space-y-2 mb-6 text-sm text-muted-foreground">
-                  {moto.motorizacao.slice(0, 2).map((spec) => (
-                    <div key={spec.label} className="flex justify-between gap-2">
-                      <span>{spec.label}:</span>
-                      <span className="font-medium text-foreground text-right">
-                        {spec.value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* CTA Button */}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full"
-                  onClick={() => setOpenMoto(moto)}
-                >
-                  Ver Ficha Técnica
-                </Button>
-              </motion.div>
-            ))}
-          </div>
-
           <button
             type="button"
-            aria-label="Ver mais motos"
-            onClick={() => scrollByCard('right')}
+            aria-label="Próxima moto"
+            onClick={() => goTo(activeIndex + 1)}
             className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-11 h-11 rounded-full bg-card border border-border text-foreground hover:border-primary hover:text-primary transition-colors shadow-lg"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
+        </div>
+
+        {/* Thumbnails */}
+        <div className="flex gap-3 overflow-x-auto pb-2 justify-center scrollbar-gold">
+          {motorcycles.map((moto, index) => (
+            <button
+              key={moto.id}
+              type="button"
+              onClick={() => goTo(index)}
+              aria-label={moto.name}
+              className={`relative flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-white border-2 transition-colors ${
+                index === activeIndex ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'
+              }`}
+            >
+              <Image
+                src={moto.image}
+                alt={moto.name}
+                fill
+                className="object-contain p-1"
+                sizes="64px"
+              />
+            </button>
+          ))}
         </div>
 
         {/* Catalog CTA */}
