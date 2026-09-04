@@ -142,3 +142,24 @@
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary) / 0.8);
 }
+
+/* Carrossel horizontal (motos) */
+.scrollbar-gold {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary)) hsl(var(--secondary));
+}
+
+.scrollbar-gold::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.scrollbar-gold::-webkit-scrollbar-track {
+  background: hsl(var(--secondary));
+  border-radius: 10px;
+}
+
+.scrollbar-gold::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--primary));
+  border-radius: 10px;
+}
