@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { WHATSAPP_VENDAS, whatsappLink } from '@/lib/contact'
+import { WHATSAPP_1, whatsappLink } from '@/lib/contact'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -53,7 +53,7 @@ export function Navbar() {
               size="sm"
               asChild
             >
-              <a href={whatsappLink(WHATSAPP_VENDAS.number)} target="_blank" rel="noopener noreferrer">
+              <a href={whatsappLink(WHATSAPP_1.number)} target="_blank" rel="noopener noreferrer">
                 Fale Conosco
               </a>
             </Button>
@@ -95,7 +95,7 @@ export function Navbar() {
                 className="w-full"
                 asChild
               >
-                <a href={whatsappLink(WHATSAPP_VENDAS.number)} target="_blank" rel="noopener noreferrer">
+                <a href={whatsappLink(WHATSAPP_1.number)} target="_blank" rel="noopener noreferrer">
                   Fale Conosco
                 </a>
               </Button>

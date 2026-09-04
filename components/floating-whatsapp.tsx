@@ -3,20 +3,11 @@
 import { motion } from 'framer-motion'
 import { MessageCircle, X } from 'lucide-react'
 import { useState } from 'react'
-import { WHATSAPP_SUPORTE, WHATSAPP_VENDAS, whatsappLink } from '@/lib/contact'
+import { WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
 
-const options = [
-  {
-    ...WHATSAPP_VENDAS,
-    description: 'Comprar ou consultar uma moto',
-    message: 'Olá! Gostaria de mais informações sobre as motos.',
-  },
-  {
-    ...WHATSAPP_SUPORTE,
-    description: 'Já é cliente e precisa de ajuda',
-    message: 'Olá! Preciso de suporte.',
-  },
-]
+const message = 'Olá! Gostaria de mais informações sobre as motos.'
+
+const options = [WHATSAPP_1, WHATSAPP_2]
 
 export function FloatingWhatsApp() {
   const [isOpen, setIsOpen] = useState(false)
@@ -44,8 +35,8 @@ export function FloatingWhatsApp() {
 
             {options.map((option) => (
               <motion.a
-                key={option.label}
-                href={whatsappLink(option.number, option.message)}
+                key={option.number}
+                href={whatsappLink(option.number, message)}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ x: 4 }}
@@ -53,10 +44,7 @@ export function FloatingWhatsApp() {
                 onClick={() => setIsOpen(false)}
               >
                 <div className="w-2 h-2 rounded-full bg-[#25d366] flex-shrink-0" />
-                <div>
-                  <p className="font-medium">WhatsApp {option.label}</p>
-                  <p className="text-xs text-muted-foreground">{option.description}</p>
-                </div>
+                <p className="font-medium">WhatsApp {option.display}</p>
               </motion.a>
             ))}
           </div>

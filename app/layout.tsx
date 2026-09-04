@@ -4,7 +4,8 @@ import './globals.css'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { FloatingWhatsApp } from '@/components/floating-whatsapp'
-import { WHATSAPP_VENDAS } from '@/lib/contact'
+import { ScrollReset } from '@/components/scroll-reset'
+import { WHATSAPP_1 } from '@/lib/contact'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -63,7 +64,7 @@ export default function RootLayout({
               name: 'VR Multimarcas',
               description: 'Revenda de motos Shineray 0km',
               url: 'https://vrmultimarcassc.com.br',
-              telephone: `+${WHATSAPP_VENDAS.number}`,
+              telephone: `+${WHATSAPP_1.number}`,
               address: {
                 '@type': 'PostalAddress',
                 streetAddress: 'Av. Arquiteto Carlos Bratke, 1083 - 4, Jardim Caravelas',
@@ -95,6 +96,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} bg-background text-foreground`}>
+        <ScrollReset />
         <Navbar />
         <main className="min-h-screen">
           {children}

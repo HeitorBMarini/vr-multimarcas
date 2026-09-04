@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react'
-import { WHATSAPP_SUPORTE, WHATSAPP_VENDAS, whatsappLink } from '@/lib/contact'
+import { WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -18,23 +18,6 @@ export function Footer() {
         { label: 'Contato', href: '#contato' },
       ],
     },
-    {
-      title: 'Suporte',
-      links: [
-        { label: 'FAQ', href: '#' },
-        { label: 'Financiamento', href: '#' },
-        { label: 'Garantia', href: '#' },
-        { label: 'Test Drive', href: '#' },
-      ],
-    },
-    {
-      title: 'Legal',
-      links: [
-        { label: 'Política de Privacidade', href: '#' },
-        { label: 'Termos de Uso', href: '#' },
-        { label: 'Cookies', href: '#' },
-      ],
-    },
   ]
 
   const socialLinks = [
@@ -47,7 +30,7 @@ export function Footer() {
     <footer className="bg-background border-t border-border">
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -68,22 +51,22 @@ export function Footer() {
             {/* Contact Info */}
             <div className="space-y-3">
               <a
-                href={whatsappLink(WHATSAPP_VENDAS.number)}
+                href={whatsappLink(WHATSAPP_1.number)}
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Phone className="w-4 h-4" />
-                <span>{WHATSAPP_VENDAS.display} (Vendas)</span>
+                <span>{WHATSAPP_1.display}</span>
               </a>
               <a
-                href={whatsappLink(WHATSAPP_SUPORTE.number)}
+                href={whatsappLink(WHATSAPP_2.number)}
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Phone className="w-4 h-4" />
-                <span>{WHATSAPP_SUPORTE.display} (Suporte)</span>
+                <span>{WHATSAPP_2.display}</span>
               </a>
               <a
                 href="mailto:contato@vrmultimarcassc.com.br"

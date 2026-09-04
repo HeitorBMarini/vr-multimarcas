@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Mail, MessageCircle, CheckCircle } from 'lucide-react'
-import { WHATSAPP_SUPORTE, WHATSAPP_VENDAS, whatsappLink } from '@/lib/contact'
+import { WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
 
 const contactSchema = z.object({
   name: z.string().min(3, 'Nome deve ter no mínimo 3 caracteres'),
@@ -91,17 +91,17 @@ export function CTASection() {
           {[
             {
               icon: MessageCircle,
-              title: `WhatsApp ${WHATSAPP_VENDAS.label}`,
-              description: 'Comprar ou consultar uma moto',
-              link: whatsappLink(WHATSAPP_VENDAS.number),
-              text: WHATSAPP_VENDAS.display,
+              title: 'WhatsApp',
+              description: 'Resposta rápida',
+              link: whatsappLink(WHATSAPP_1.number),
+              text: WHATSAPP_1.display,
             },
             {
               icon: MessageCircle,
-              title: `WhatsApp ${WHATSAPP_SUPORTE.label}`,
-              description: 'Já é cliente e precisa de ajuda',
-              link: whatsappLink(WHATSAPP_SUPORTE.number),
-              text: WHATSAPP_SUPORTE.display,
+              title: 'WhatsApp',
+              description: 'Resposta rápida',
+              link: whatsappLink(WHATSAPP_2.number),
+              text: WHATSAPP_2.display,
             },
             {
               icon: Mail,

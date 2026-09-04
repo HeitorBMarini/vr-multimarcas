@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { WHATSAPP_SUPORTE, WHATSAPP_VENDAS, whatsappLink } from '@/lib/contact'
+import { WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
 import {
   MapPin,
   Clock,
@@ -16,10 +16,7 @@ const ADDRESS_CITY = 'Jardim Caravelas, São Paulo - SP, 04728-002'
 const MAPS_QUERY = encodeURIComponent(`${ADDRESS_LINE}, ${ADDRESS_CITY}`)
 
 export function LocationSection() {
-  const whatsappCards = [
-    { ...WHATSAPP_VENDAS, description: 'Comprar ou consultar uma moto' },
-    { ...WHATSAPP_SUPORTE, description: 'Já é cliente e precisa de ajuda' },
-  ]
+  const whatsappCards = [WHATSAPP_1, WHATSAPP_2]
 
   const otherInfo = [
     {
@@ -102,11 +99,11 @@ export function LocationSection() {
               </div>
             </div>
 
-            {/* WhatsApp: Vendas + Suporte lado a lado */}
+            {/* WhatsApp: dois numeros lado a lado */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {whatsappCards.map((card) => (
                 <a
-                  key={card.label}
+                  key={card.number}
                   href={whatsappLink(card.number)}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -116,8 +113,7 @@ export function LocationSection() {
                     <MessageCircle className="w-6 h-6 text-[#25d366]" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">WhatsApp {card.label}</h3>
-                    <p className="text-sm text-muted-foreground mb-1">{card.description}</p>
+                    <h3 className="font-semibold">WhatsApp</h3>
                     <p className="text-primary font-medium">{card.display}</p>
                   </div>
                 </a>
@@ -191,7 +187,7 @@ export function LocationSection() {
                 asChild
               >
                 <a
-                  href={whatsappLink(WHATSAPP_VENDAS.number, 'Oi! Gostaria de agendar uma visita')}
+                  href={whatsappLink(WHATSAPP_1.number, 'Oi! Gostaria de agendar uma visita')}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

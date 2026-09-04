@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 import { NextRequest, NextResponse } from 'next/server'
-import { WHATSAPP_VENDAS } from '@/lib/contact'
+import { WHATSAPP_1 } from '@/lib/contact'
 
 interface ContactRequest {
   name: string
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
         <p>Olá ${name},</p>
         <p>Recebemos sua mensagem e entraremos em contato em breve.</p>
         <p>Se preferir, você também pode nos contatar via WhatsApp:</p>
-        <p><strong>${WHATSAPP_VENDAS.display}</strong></p>
+        <p><strong>${WHATSAPP_1.display}</strong></p>
         <br>
         <p>Atenciosamente,<br>Equipe VR Multimarcas</p>
       `,
