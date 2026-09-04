@@ -29,7 +29,7 @@ export function Navbar() {
             <span className="font-bold text-lg sm:text-xl md:text-2xl">
               <span className="text-primary">VR</span> Multimarcas
             </span>
-            <span className="text-[10px] sm:text-xs text-muted-foreground font-medium">
+            <span className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium">
               Santo Amaro - SP - Zona Sul
             </span>
           </Link>
