@@ -25,10 +25,12 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="min-w-0 flex-1 md:flex-initial">
-            <span className="font-bold text-sm sm:text-xl md:text-2xl leading-tight">
+          <Link href="/" className="min-w-0 flex-1 md:flex-initial flex flex-col leading-tight">
+            <span className="font-bold text-lg sm:text-xl md:text-2xl">
               <span className="text-primary">VR</span> Multimarcas
-              <span className="text-muted-foreground font-medium"> - Santo Amaro - SP - Zona Sul</span>
+            </span>
+            <span className="text-[10px] sm:text-xs text-muted-foreground font-medium">
+              Santo Amaro - SP - Zona Sul
             </span>
           </Link>
 
