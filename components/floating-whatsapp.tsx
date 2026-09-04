@@ -3,12 +3,23 @@
 import { motion } from 'framer-motion'
 import { MessageCircle, X } from 'lucide-react'
 import { useState } from 'react'
+import { WHATSAPP_SUPORTE, WHATSAPP_VENDAS, whatsappLink } from '@/lib/contact'
+
+const options = [
+  {
+    ...WHATSAPP_VENDAS,
+    description: 'Comprar ou consultar uma moto',
+    message: 'Olá! Gostaria de mais informações sobre as motos.',
+  },
+  {
+    ...WHATSAPP_SUPORTE,
+    description: 'Já é cliente e precisa de ajuda',
+    message: 'Olá! Preciso de suporte.',
+  },
+]
 
 export function FloatingWhatsApp() {
   const [isOpen, setIsOpen] = useState(false)
-
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5548998146981'
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Olá! Gostaria de mais informações sobre as motos.`
 
   return (
     <>
@@ -31,53 +42,23 @@ export function FloatingWhatsApp() {
           <div className="p-4 space-y-2 min-w-80">
             <h3 className="font-semibold text-sm mb-3">Como podemos ajudar?</h3>
 
-            <motion.a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ x: 4 }}
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 transition-colors text-sm cursor-pointer"
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Informações sobre motos</span>
-            </motion.a>
-
-            <motion.a
-              href={`https://wa.me/${whatsappNumber}?text=Gostaria de agendar um test drive`}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ x: 4 }}
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 transition-colors text-sm cursor-pointer"
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Agendar test drive</span>
-            </motion.a>
-
-            <motion.a
-              href={`https://wa.me/${whatsappNumber}?text=Gostaria de saber sobre financiamento`}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ x: 4 }}
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 transition-colors text-sm cursor-pointer"
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Financiamento</span>
-            </motion.a>
-
-            <motion.a
-              href={`https://wa.me/${whatsappNumber}?text=Tenho uma dúvida`}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ x: 4 }}
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 transition-colors text-sm cursor-pointer"
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Dúvidas gerais</span>
-            </motion.a>
+            {options.map((option) => (
+              <motion.a
+                key={option.label}
+                href={whatsappLink(option.number, option.message)}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ x: 4 }}
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#25d366]/10 transition-colors text-sm cursor-pointer"
+                onClick={() => setIsOpen(false)}
+              >
+                <div className="w-2 h-2 rounded-full bg-[#25d366] flex-shrink-0" />
+                <div>
+                  <p className="font-medium">WhatsApp {option.label}</p>
+                  <p className="text-xs text-muted-foreground">{option.description}</p>
+                </div>
+              </motion.a>
+            ))}
           </div>
         </motion.div>
 

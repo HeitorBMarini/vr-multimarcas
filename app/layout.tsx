@@ -4,6 +4,7 @@ import './globals.css'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { FloatingWhatsApp } from '@/components/floating-whatsapp'
+import { WHATSAPP_VENDAS } from '@/lib/contact'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -62,17 +63,33 @@ export default function RootLayout({
               name: 'VR Multimarcas',
               description: 'Revenda de motos Shineray 0km',
               url: 'https://vrmultimarcassc.com.br',
-              telephone: '+5548998146981',
+              telephone: `+${WHATSAPP_VENDAS.number}`,
               address: {
                 '@type': 'PostalAddress',
-                addressLocality: 'Santo Amaro, São Paulo',
+                streetAddress: 'Av. Arquiteto Carlos Bratke, 1083 - 4, Jardim Caravelas',
+                addressLocality: 'São Paulo',
                 addressRegion: 'SP',
+                postalCode: '04728-002',
                 addressCountry: 'BR',
               },
               areaServed: {
                 '@type': 'City',
                 name: 'São Paulo',
               },
+              openingHoursSpecification: [
+                {
+                  '@type': 'OpeningHoursSpecification',
+                  dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                  opens: '09:00',
+                  closes: '18:00',
+                },
+                {
+                  '@type': 'OpeningHoursSpecification',
+                  dayOfWeek: ['Saturday'],
+                  opens: '09:00',
+                  closes: '14:00',
+                },
+              ],
             }),
           }}
         />

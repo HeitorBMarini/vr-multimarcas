@@ -2,28 +2,26 @@
 
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
+import { WHATSAPP_SUPORTE, WHATSAPP_VENDAS, whatsappLink } from '@/lib/contact'
 import {
   MapPin,
-  Phone,
   Clock,
   Mail,
+  MessageCircle,
   Navigation,
 } from 'lucide-react'
 
+const ADDRESS_LINE = 'Av. Arquiteto Carlos Bratke, 1083 - 4'
+const ADDRESS_CITY = 'Jardim Caravelas, São Paulo - SP, 04728-002'
+const MAPS_QUERY = encodeURIComponent(`${ADDRESS_LINE}, ${ADDRESS_CITY}`)
+
 export function LocationSection() {
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: 'Endereço',
-      content: 'Santo Amaro',
-      subContent: 'São Paulo - SP',
-    },
-    {
-      icon: Phone,
-      title: 'Telefone',
-      content: '(48) 99814-6981',
-      link: 'https://wa.me/5548998146981',
-    },
+  const whatsappCards = [
+    { ...WHATSAPP_VENDAS, description: 'Comprar ou consultar uma moto' },
+    { ...WHATSAPP_SUPORTE, description: 'Já é cliente e precisa de ajuda' },
+  ]
+
+  const otherInfo = [
     {
       icon: Mail,
       title: 'E-mail',
@@ -34,7 +32,7 @@ export function LocationSection() {
       icon: Clock,
       title: 'Horário',
       content: 'Seg - Sex: 9h às 18h',
-      subContent: 'Sab: 9h às 13h',
+      subContent: 'Sáb: 9h às 14h',
     },
   ]
 
@@ -71,7 +69,7 @@ export function LocationSection() {
             className="rounded-2xl overflow-hidden border border-border h-96 lg:h-full min-h-96"
           >
             <iframe
-              src="https://maps.google.com/maps?q=Santo+Amaro%2C+S%C3%A3o+Paulo+-+SP&output=embed"
+              src={`https://maps.google.com/maps?q=${MAPS_QUERY}&output=embed`}
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -88,13 +86,50 @@ export function LocationSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="space-y-4"
           >
-            {contactInfo.map((info, index) => {
+            {/* Address */}
+            <div className="flex gap-4 p-6 rounded-xl border border-border bg-background/50 hover:bg-background hover:border-primary transition-all duration-300 group">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                  <MapPin className="w-6 h-6 text-primary" />
+                </div>
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold mb-1">Endereço</h3>
+                <p className="text-foreground font-medium">{ADDRESS_LINE}</p>
+                <p className="text-sm text-muted-foreground mt-1">{ADDRESS_CITY}</p>
+              </div>
+            </div>
+
+            {/* WhatsApp: Vendas + Suporte lado a lado */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {whatsappCards.map((card) => (
+                <a
+                  key={card.label}
+                  href={whatsappLink(card.number)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col gap-2 p-6 rounded-xl border border-border bg-background/50 hover:bg-background hover:border-primary transition-all duration-300 group"
+                >
+                  <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-[#25d366]/10 group-hover:bg-[#25d366]/20 transition-colors">
+                    <MessageCircle className="w-6 h-6 text-[#25d366]" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">WhatsApp {card.label}</h3>
+                    <p className="text-sm text-muted-foreground mb-1">{card.description}</p>
+                    <p className="text-primary font-medium">{card.display}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            {/* Email + Horário */}
+            {otherInfo.map((info, index) => {
               const Icon = info.icon
               return (
                 <motion.div
-                  key={index}
+                  key={info.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -137,11 +172,17 @@ export function LocationSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="pt-6 space-y-4"
+              className="pt-2 space-y-4"
             >
-              <Button size="lg" className="w-full group">
-                <Navigation className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
-                Como Chegar
+              <Button size="lg" className="w-full group" asChild>
+                <a
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${MAPS_QUERY}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Navigation className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
+                  Como Chegar
+                </a>
               </Button>
               <Button
                 size="lg"
@@ -150,7 +191,7 @@ export function LocationSection() {
                 asChild
               >
                 <a
-                  href="https://wa.me/5548998146981?text=Oi! Gostaria de agendar uma visita"
+                  href={whatsappLink(WHATSAPP_VENDAS.number, 'Oi! Gostaria de agendar uma visita')}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

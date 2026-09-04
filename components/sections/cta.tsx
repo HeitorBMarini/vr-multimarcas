@@ -8,7 +8,8 @@ import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Mail, Phone, CheckCircle } from 'lucide-react'
+import { Mail, MessageCircle, CheckCircle } from 'lucide-react'
+import { WHATSAPP_SUPORTE, WHATSAPP_VENDAS, whatsappLink } from '@/lib/contact'
 
 const contactSchema = z.object({
   name: z.string().min(3, 'Nome deve ter no mínimo 3 caracteres'),
@@ -89,11 +90,18 @@ export function CTASection() {
           {/* Quick Contact */}
           {[
             {
-              icon: Phone,
-              title: 'Whatsapp',
-              description: 'Resposta rápida',
-              link: 'https://wa.me/5548998146981',
-              text: '(48) 99814-6981',
+              icon: MessageCircle,
+              title: `WhatsApp ${WHATSAPP_VENDAS.label}`,
+              description: 'Comprar ou consultar uma moto',
+              link: whatsappLink(WHATSAPP_VENDAS.number),
+              text: WHATSAPP_VENDAS.display,
+            },
+            {
+              icon: MessageCircle,
+              title: `WhatsApp ${WHATSAPP_SUPORTE.label}`,
+              description: 'Já é cliente e precisa de ajuda',
+              link: whatsappLink(WHATSAPP_SUPORTE.number),
+              text: WHATSAPP_SUPORTE.display,
             },
             {
               icon: Mail,
@@ -101,13 +109,6 @@ export function CTASection() {
               description: 'Envie sua mensagem',
               link: 'mailto:contato@vrmultimarcassc.com.br',
               text: 'contato@vrmultimarcassc.com.br',
-            },
-            {
-              icon: Phone,
-              title: 'Telefonema',
-              description: 'Fale com nossa equipe',
-              link: 'tel:+5548998146981',
-              text: '(48) 99814-6981',
             },
           ].map((item, index) => {
             const Icon = item.icon

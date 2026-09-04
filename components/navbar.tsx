@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { WHATSAPP_VENDAS, whatsappLink } from '@/lib/contact'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,9 +25,13 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="text-2xl font-bold text-primary">VR</div>
-            <div className="text-sm font-semibold">Multimarcas</div>
+          <Link href="/" className="flex flex-col leading-tight">
+            <span className="text-2xl sm:text-3xl font-bold">
+              <span className="text-primary">VR</span> Multimarcas
+            </span>
+            <span className="text-[10px] sm:text-xs font-medium text-muted-foreground tracking-wide uppercase">
+              Santo Amaro - SP - Zona Sul
+            </span>
           </Link>
 
           {/* Desktop Menu */}
@@ -48,7 +53,7 @@ export function Navbar() {
               size="sm"
               asChild
             >
-              <a href="https://wa.me/5548998146981" target="_blank" rel="noopener noreferrer">
+              <a href={whatsappLink(WHATSAPP_VENDAS.number)} target="_blank" rel="noopener noreferrer">
                 Fale Conosco
               </a>
             </Button>
@@ -90,7 +95,7 @@ export function Navbar() {
                 className="w-full"
                 asChild
               >
-                <a href="https://wa.me/5548998146981" target="_blank" rel="noopener noreferrer">
+                <a href={whatsappLink(WHATSAPP_VENDAS.number)} target="_blank" rel="noopener noreferrer">
                   Fale Conosco
                 </a>
               </Button>

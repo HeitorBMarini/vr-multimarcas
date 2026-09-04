@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react'
+import { WHATSAPP_SUPORTE, WHATSAPP_VENDAS, whatsappLink } from '@/lib/contact'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -67,13 +68,22 @@ export function Footer() {
             {/* Contact Info */}
             <div className="space-y-3">
               <a
-                href="https://wa.me/5548998146981"
+                href={whatsappLink(WHATSAPP_VENDAS.number)}
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Phone className="w-4 h-4" />
-                <span>(48) 99814-6981</span>
+                <span>{WHATSAPP_VENDAS.display} (Vendas)</span>
+              </a>
+              <a
+                href={whatsappLink(WHATSAPP_SUPORTE.number)}
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Phone className="w-4 h-4" />
+                <span>{WHATSAPP_SUPORTE.display} (Suporte)</span>
               </a>
               <a
                 href="mailto:contato@vrmultimarcassc.com.br"
@@ -85,8 +95,8 @@ export function Footer() {
               <div className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
                 <div>
-                  <p>Santo Amaro</p>
-                  <p>São Paulo - SP</p>
+                  <p>Av. Arquiteto Carlos Bratke, 1083 - 4</p>
+                  <p>Jardim Caravelas, São Paulo - SP</p>
                 </div>
               </div>
             </div>

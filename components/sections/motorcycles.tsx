@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { motorcycles as allMotorcycles, type Motorcycle } from '@/data/motorcycles'
+import { WHATSAPP_VENDAS, whatsappLink } from '@/lib/contact'
 import { ChevronLeft, ChevronRight, MessageCircle, X } from 'lucide-react'
 
 // Só exibimos motos com foto real cadastrada
@@ -148,7 +149,7 @@ export function MotorcyclesSection() {
                       asChild
                     >
                       <a
-                        href={`https://wa.me/5548998146981?text=${encodeURIComponent(`Olá! Quero saber mais sobre a ${active.name}.`)}`}
+                        href={whatsappLink(WHATSAPP_VENDAS.number, `Olá! Quero saber mais sobre a ${active.name}.`)}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -208,7 +209,7 @@ export function MotorcyclesSection() {
         <div className="text-center mt-12">
           <Button size="lg" asChild>
             <a
-              href="https://wa.me/5548998146981?text=Quero%20ver%20o%20cat%C3%A1logo%20completo!"
+              href={whatsappLink(WHATSAPP_VENDAS.number, 'Quero ver o catálogo completo!')}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -305,7 +306,7 @@ export function MotorcyclesSection() {
                     asChild
                   >
                     <a
-                      href={`https://wa.me/5548998146981?text=${encodeURIComponent(`Olá! Quero saber mais sobre a ${openMoto.name}.`)}`}
+                      href={whatsappLink(WHATSAPP_VENDAS.number, `Olá! Quero saber mais sobre a ${openMoto.name}.`)}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
