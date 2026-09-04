@@ -25,12 +25,10 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex flex-col leading-tight">
-            <span className="text-2xl sm:text-3xl font-bold">
+          <Link href="/" className="min-w-0 flex-1 md:flex-initial">
+            <span className="font-bold text-sm sm:text-xl md:text-2xl leading-tight">
               <span className="text-primary">VR</span> Multimarcas
-            </span>
-            <span className="text-[10px] sm:text-xs font-medium text-muted-foreground tracking-wide uppercase">
-              Santo Amaro - SP - Zona Sul
+              <span className="text-muted-foreground font-medium"> - Santo Amaro - SP - Zona Sul</span>
             </span>
           </Link>
 
@@ -64,7 +62,7 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden"
+            className="md:hidden flex-shrink-0 ml-3"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
