@@ -10,7 +10,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   const menuItems = [
-    { label: 'Início', href: '#' },
+    { label: 'Início', href: '#inicio' },
     { label: 'Motos', href: '#motos' },
     { label: 'Localização', href: '#localizacao' },
   ]
@@ -52,8 +52,8 @@ export function Navbar() {
                 Fale Conosco
               </a>
             </Button>
-            <Button size="sm">
-              Ver Motos
+            <Button size="sm" asChild>
+              <a href="#motos">Ver Motos</a>
             </Button>
           </div>
 
@@ -94,8 +94,8 @@ export function Navbar() {
                   Fale Conosco
                 </a>
               </Button>
-              <Button size="sm" className="w-full">
-                Ver Motos
+              <Button size="sm" className="w-full" asChild>
+                <a href="#motos">Ver Motos</a>
               </Button>
             </div>
           </motion.div>

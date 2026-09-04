@@ -86,7 +86,7 @@ export function FloatingWhatsApp() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsOpen(!isOpen)}
-          className="relative w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/80 shadow-lg flex items-center justify-center text-white hover:shadow-xl transition-shadow"
+          className="relative w-16 h-16 rounded-full bg-[#25d366] hover:bg-[#20b858] shadow-lg flex items-center justify-center text-white hover:shadow-xl transition-colors"
         >
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}

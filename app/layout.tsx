@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    url: 'https://vrmultimarcas.com.br',
+    url: 'https://vrmultimarcassc.com.br',
     title: 'VR Multimarcas | Sua Moto é Aqui',
     description: 'Revenda de motos Shineray 0km em Florianópolis',
     images: [
@@ -60,7 +60,7 @@ export default function RootLayout({
               '@type': 'LocalBusiness',
               name: 'VR Multimarcas',
               description: 'Revenda de motos Shineray 0km',
-              url: 'https://vrmultimarcas.com.br',
+              url: 'https://vrmultimarcassc.com.br',
               telephone: '+5548998146981',
               address: {
                 '@type': 'PostalAddress',

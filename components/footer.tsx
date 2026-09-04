@@ -11,10 +11,10 @@ export function Footer() {
     {
       title: 'Navegação',
       links: [
-        { label: 'Início', href: '#' },
+        { label: 'Início', href: '#inicio' },
         { label: 'Motos', href: '#motos' },
         { label: 'Localização', href: '#localizacao' },
-        { label: 'Contato', href: '#' },
+        { label: 'Contato', href: '#contato' },
       ],
     },
     {
@@ -76,11 +76,11 @@ export function Footer() {
                 <span>(48) 99814-6981</span>
               </a>
               <a
-                href="mailto:contato@vrmultimarcas.com.br"
+                href="mailto:contato@vrmultimarcassc.com.br"
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                <span>contato@vrmultimarcas.com.br</span>
+                <span>contato@vrmultimarcassc.com.br</span>
               </a>
               <div className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
@@ -123,16 +123,18 @@ export function Footer() {
 
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          {/* Copyright */}
-          <motion.p
+          {/* Copyright + Legal */}
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-muted-foreground text-sm"
+            className="text-muted-foreground text-sm text-center md:text-left"
           >
-            © {currentYear} VR Multimarcas. Todos os direitos reservados.
-          </motion.p>
+            <p className="font-semibold">C.CRUZ APOIO ADMINISTRATIVO LTDA</p>
+            <p>CNPJ: 64.626.970/0001-80</p>
+            <p>© {currentYear} VR Multimarcas. Todos os direitos reservados.</p>
+          </motion.div>
 
           {/* Social Links */}
           <motion.div

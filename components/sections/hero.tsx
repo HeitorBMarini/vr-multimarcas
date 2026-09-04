@@ -6,7 +6,7 @@ import { ArrowRight, Zap } from 'lucide-react'
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-background via-background to-secondary/20 pt-20">
+    <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-background via-background to-secondary/20 pt-20">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -50,7 +50,7 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-5xl lg:text-6xl font-bold leading-tight"
             >
-              Sua Moto é <span className="text-primary">Aqui</span>
+              Conquiste a <span className="text-primary">sua moto.</span>
             </motion.h1>
 
             <motion.p
@@ -59,8 +59,7 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-lg text-muted-foreground leading-relaxed"
             >
-              Encontre a moto perfeita para suas aventuras em Florianópolis.
-              Motos Shineray 0km, financiamento facilitado e garantia completa.
+              Shineray 0km. Sua nova moto espera por você.
             </motion.p>
 
             <motion.div
@@ -69,17 +68,19 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4 pt-6"
             >
-              <Button size="lg" className="group">
-                Ver Motos
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              <Button size="lg" className="group" asChild>
+                <a href="#motos">
+                  Ver Motos
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </a>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 asChild
               >
-                <a href="https://wa.me/5548998146981" target="_blank" rel="noopener noreferrer">
-                  Fale Conosco
+                <a href="#localizacao">
+                  Onde Estamos
                 </a>
               </Button>
             </motion.div>

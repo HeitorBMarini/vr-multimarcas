@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { motorcycles } from '@/data/motorcycles'
-import { MessageCircle, Zap } from 'lucide-react'
+import { MessageCircle } from 'lucide-react'
 
 export function MotorcyclesSection() {
   const [selectedMoto, setSelectedMoto] = useState(motorcycles[0])
@@ -54,11 +54,11 @@ export function MotorcyclesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Nossas Motos
+            Motos <span className="text-primary">Shineray</span>
           </h2>
+          <div className="w-20 h-1 bg-primary mx-auto mb-4 rounded-full" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Catálogo completo de motos Shineray 0km com as melhores
-            especificações e preços do mercado
+            Clique em um modelo para ver a ficha técnica completa
           </p>
         </motion.div>
 
@@ -82,7 +82,7 @@ export function MotorcyclesSection() {
               }`}
             >
               {/* Moto Icon */}
-              <div className="mb-4 h-40 flex items-center justify-center bg-secondary/20 rounded-lg group-hover:bg-secondary/40 transition-colors">
+              <div className="mb-4 h-40 flex items-center justify-center bg-white rounded-lg">
                 <motion.div
                   animate={{
                     rotate: selectedMoto.id === moto.id ? [0, 5, -5, 0] : 0,
@@ -95,8 +95,8 @@ export function MotorcyclesSection() {
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-bold mb-2">{moto.name}</h3>
-              <p className="text-sm text-muted-foreground mb-4">{moto.model}</p>
+              <h3 className="text-xl font-bold mb-1">{moto.name}</h3>
+              <p className="text-sm text-muted-foreground mb-4">{moto.category}</p>
 
               {/* Price */}
               <div className="text-primary font-bold text-lg mb-4">
@@ -105,34 +105,24 @@ export function MotorcyclesSection() {
 
               {/* Quick Specs */}
               <div className="space-y-2 mb-6 text-sm text-muted-foreground">
-                <div className="flex justify-between">
-                  <span>Motor:</span>
-                  <span className="font-medium text-foreground">
-                    {moto.specs.engine}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Potência:</span>
-                  <span className="font-medium text-foreground">
-                    {moto.specs.power}
-                  </span>
-                </div>
+                {moto.motorizacao.slice(0, 2).map((spec) => (
+                  <div key={spec.label} className="flex justify-between gap-2">
+                    <span>{spec.label}:</span>
+                    <span className="font-medium text-foreground text-right">
+                      {spec.value}
+                    </span>
+                  </div>
+                ))}
               </div>
 
               {/* CTA Button */}
               <Button
+                variant="outline"
                 size="sm"
                 className="w-full"
                 asChild
               >
-                <a
-                  href={`https://wa.me/5548998146981?text=Oi! Gostaria de saber mais sobre a ${moto.name}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Consultar
-                </a>
+                <a href="#detalhes">Ver Ficha Técnica</a>
               </Button>
             </motion.div>
           ))}
@@ -141,14 +131,15 @@ export function MotorcyclesSection() {
         {/* Selected Motorcycle Details */}
         {selectedMoto && (
           <motion.div
+            id="detalhes"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-secondary/30 rounded-2xl p-8 border border-border"
+            className="bg-card rounded-2xl p-8 border border-border scroll-mt-24"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Left - Image area */}
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center bg-white rounded-xl">
                 <motion.div
                   animate={{
                     y: [0, -20, 0],
@@ -158,7 +149,7 @@ export function MotorcyclesSection() {
                     repeat: Infinity,
                     ease: 'easeInOut',
                   }}
-                  className="text-9xl"
+                  className="text-9xl py-12"
                 >
                   🏍️
                 </motion.div>
@@ -168,93 +159,61 @@ export function MotorcyclesSection() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-3xl font-bold mb-2">{selectedMoto.name}</h3>
-                  <p className="text-muted-foreground">{selectedMoto.model}</p>
+                  <p className="text-muted-foreground">{selectedMoto.category}</p>
                 </div>
 
-                <p className="text-lg text-muted-foreground">
-                  {selectedMoto.description}
+                <p className="text-2xl font-bold text-primary">
+                  {selectedMoto.price}
                 </p>
 
-                {/* Specs Grid */}
-                <div className="grid grid-cols-2 gap-4">
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    className="bg-background/50 p-4 rounded-lg border border-border"
-                  >
-                    <p className="text-sm text-muted-foreground mb-1">Motor</p>
-                    <p className="font-bold">{selectedMoto.specs.engine}</p>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    className="bg-background/50 p-4 rounded-lg border border-border"
-                  >
-                    <p className="text-sm text-muted-foreground mb-1">Potência</p>
-                    <p className="font-bold">{selectedMoto.specs.power}</p>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    className="bg-background/50 p-4 rounded-lg border border-border"
-                  >
-                    <p className="text-sm text-muted-foreground mb-1">
-                      Transmissão
-                    </p>
-                    <p className="font-bold">{selectedMoto.specs.transmission}</p>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    className="bg-background/50 p-4 rounded-lg border border-border"
-                  >
-                    <p className="text-sm text-muted-foreground mb-1">
-                      Consumo
-                    </p>
-                    <p className="font-bold">
-                      {selectedMoto.specs.fuelConsumption}
-                    </p>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    className="bg-background/50 p-4 rounded-lg border border-border"
-                  >
-                    <p className="text-sm text-muted-foreground mb-1">
-                      Velocidade
-                    </p>
-                    <p className="font-bold">{selectedMoto.specs.maxSpeed}</p>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    className="bg-background/50 p-4 rounded-lg border border-border"
-                  >
-                    <p className="text-sm text-muted-foreground mb-1">Preço</p>
-                    <p className="font-bold text-primary">
-                      {selectedMoto.price}
-                    </p>
-                  </motion.div>
+                <div>
+                  <h4 className="text-sm font-semibold uppercase tracking-wide text-primary border-b border-border pb-2 mb-3">
+                    Motorização
+                  </h4>
+                  <ul className="space-y-2">
+                    {selectedMoto.motorizacao.map((spec) => (
+                      <li
+                        key={spec.label}
+                        className="flex justify-between text-sm border-b border-border/50 pb-2"
+                      >
+                        <span className="text-muted-foreground">{spec.label}</span>
+                        <span className="font-medium text-right">{spec.value}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                  <Button size="lg" className="flex-1">
-                    <Zap className="w-4 h-4 mr-2" />
-                    Financiar
-                  </Button>
+                <div>
+                  <h4 className="text-sm font-semibold uppercase tracking-wide text-primary border-b border-border pb-2 mb-3">
+                    Estrutura
+                  </h4>
+                  <ul className="space-y-2">
+                    {selectedMoto.estrutura.map((spec) => (
+                      <li
+                        key={spec.label}
+                        className="flex justify-between text-sm border-b border-border/50 pb-2"
+                      >
+                        <span className="text-muted-foreground">{spec.label}</span>
+                        <span className="font-medium text-right">{spec.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* CTA */}
+                <div className="pt-4">
                   <Button
                     size="lg"
-                    variant="outline"
-                    className="flex-1"
+                    className="w-full bg-[#25d366] text-white hover:bg-[#20b858]"
                     asChild
                   >
                     <a
-                      href={`https://wa.me/5548998146981?text=Oi! Gostaria de agendar um test drive da ${selectedMoto.name}`}
+                      href={`https://wa.me/5548998146981?text=${encodeURIComponent(`Olá! Quero saber mais sobre a ${selectedMoto.name}.`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <MessageCircle className="w-4 h-4 mr-2" />
-                      Test Drive
+                      Falar com Vendedor
                     </a>
                   </Button>
                 </div>
@@ -262,6 +221,20 @@ export function MotorcyclesSection() {
             </div>
           </motion.div>
         )}
+
+        {/* Catalog CTA */}
+        <div className="text-center mt-12">
+          <Button size="lg" asChild>
+            <a
+              href="https://wa.me/5548998146981?text=Quero%20ver%20o%20cat%C3%A1logo%20completo!"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Falar com Consultor
+            </a>
+          </Button>
+        </div>
       </div>
     </section>
   )

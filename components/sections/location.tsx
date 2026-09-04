@@ -27,8 +27,8 @@ export function LocationSection() {
     {
       icon: Mail,
       title: 'E-mail',
-      content: 'contato@vrmultimarcas.com.br',
-      link: 'mailto:contato@vrmultimarcas.com.br',
+      content: 'contato@vrmultimarcassc.com.br',
+      link: 'mailto:contato@vrmultimarcassc.com.br',
     },
     {
       icon: Clock,
@@ -53,10 +53,11 @@ export function LocationSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Nos Encontre
+            Sua moto zero está aqui.
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Visite nossa concessionária e conheça nossas motos Shineray
+            Nossa loja física tem estrutura completa para te atender. Venha ver
+            as motos de perto e fechar negócio.
           </p>
         </motion.div>
 
@@ -70,7 +71,7 @@ export function LocationSection() {
             className="rounded-2xl overflow-hidden border border-border h-96 lg:h-full min-h-96"
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3530.6896382648457!2d-48.276844!3d-27.449356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95219f7c5e5e5e5d%3A0x5e5e5e5e5e5e5e5e!2sServidão%20Três%20Marias%2C%20715%20-%20Sala%2003!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.364955799799!2d-48.40455502454519!3d-27.457850876326162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95274116c4c8d203%3A0x7d6fbfd6ab8f3dd0!2sServid%C3%A3o%20Tr%C3%AAs%20Marias%2C%20715%20-%20Ingleses%20Norte%2C%20Florian%C3%B3polis%20-%20SC%2C%2088058-648!5e0!3m2!1spt-BR!2sbr!4v1709413245678!5m2!1spt-BR!2sbr"
               width="100%"
               height="100%"
               style={{ border: 0 }}

@@ -56,7 +56,7 @@ export function CTASection() {
   }
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-primary/10 to-primary/5 relative overflow-hidden">
+    <section id="contato" className="py-20 px-4 bg-gradient-to-br from-primary/10 to-primary/5 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -99,8 +99,8 @@ export function CTASection() {
               icon: Mail,
               title: 'Email',
               description: 'Envie sua mensagem',
-              link: 'mailto:contato@vrmultimarcas.com.br',
-              text: 'contato@vrmultimarcas.com.br',
+              link: 'mailto:contato@vrmultimarcassc.com.br',
+              text: 'contato@vrmultimarcassc.com.br',
             },
             {
               icon: Phone,
@@ -159,7 +159,7 @@ export function CTASection() {
                 className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-lg flex items-center gap-3"
               >
                 <CheckCircle className="w-5 h-5 text-green-500" />
-                <p className="text-green-700 dark:text-green-400">
+                <p className="text-green-400">
                   Mensagem enviada com sucesso! Entraremos em contato em breve.
                 </p>
               </motion.div>

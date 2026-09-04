@@ -35,7 +35,7 @@ Crie um arquivo `.env.local` na raiz do projeto:
 ```env
 NEXT_PUBLIC_WHATSAPP_NUMBER=5548998146981
 RESEND_API_KEY=sua_chave_resend_aqui
-NEXT_PUBLIC_SITE_URL=https://vrmultimarcas.com.br
+NEXT_PUBLIC_SITE_URL=https://vrmultimarcassc.com.br
 ```
 
 ## 🚀 Desenvolvimento

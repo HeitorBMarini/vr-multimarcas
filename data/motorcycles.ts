@@ -1,83 +1,179 @@
+export interface SpecItem {
+  label: string
+  value: string
+}
+
 export interface Motorcycle {
   id: string
   name: string
-  model: string
-  year: number
+  category: string
   price: string
-  image: string
-  specs: {
-    engine: string
-    power: string
-    transmission: string
-    fuelConsumption: string
-    maxSpeed: string
-  }
-  description: string
+  motorizacao: SpecItem[]
+  estrutura: SpecItem[]
 }
 
 export const motorcycles: Motorcycle[] = [
   {
-    id: '1',
-    name: 'Shineray XY 150',
-    model: 'XY150-10C',
-    year: 2024,
-    price: 'A partir de R$ 5.990',
-    image: '/motorcycles/xy150.jpg',
-    specs: {
-      engine: '150cc 4T',
-      power: '12.5 cv',
-      transmission: 'Manual',
-      fuelConsumption: '60 km/l',
-      maxSpeed: '120 km/h',
-    },
-    description: 'Moto versátil e econômica, perfeita para o dia a dia em Florianópolis.',
+    id: 'urban-150-efi',
+    name: 'URBAN 150 EFI',
+    category: 'Scooter | Injeção Eletrônica',
+    price: 'Consulte',
+    motorizacao: [
+      { label: 'Cilindrada', value: '149 cc (Injeção Eletrônica)' },
+      { label: 'Potência Máx.', value: '12,9 cv / 8500 RPM' },
+      { label: 'Torque Máx.', value: '13 Nm / 5000 RPM' },
+      { label: 'Câmbio', value: 'Automático (CVT)' },
+    ],
+    estrutura: [
+      { label: 'Freios (D/T)', value: 'Disco ABS / Disco ABS' },
+      { label: 'Tanque', value: '13,5 L' },
+      { label: 'Peso Seco', value: '145 kg' },
+    ],
   },
   {
-    id: '2',
-    name: 'Shineray XY 125',
-    model: 'XY125-10C',
-    year: 2024,
-    price: 'A partir de R$ 4.990',
-    image: '/motorcycles/xy125.jpg',
-    specs: {
-      engine: '125cc 4T',
-      power: '11.5 cv',
-      transmission: 'Manual',
-      fuelConsumption: '65 km/l',
-      maxSpeed: '115 km/h',
-    },
-    description: 'Entrada perfeita no mundo das motos, com estilo e confiabilidade Shineray.',
+    id: 'shi-175',
+    name: 'SHI 175',
+    category: 'Trail | Aventura e Dia a Dia',
+    price: 'Consulte',
+    motorizacao: [
+      { label: 'Cilindrada', value: '175 cc' },
+      { label: 'Tipo', value: 'Monocilíndrico, 4T, 2V, OHC' },
+      { label: 'Câmbio', value: '5 Marchas' },
+      { label: 'Partida', value: 'Elétrica e Pedal' },
+    ],
+    estrutura: [
+      { label: 'Freios (D/T)', value: 'Disco CBS / Disco CBS' },
+      { label: 'Suspensão Diant.', value: 'Garfo Telescópico' },
+      { label: 'Suspensão Tras.', value: 'Monoshock' },
+    ],
   },
   {
-    id: '3',
-    name: 'Shineray XY 200',
-    model: 'XY200-GY',
-    year: 2024,
-    price: 'A partir de R$ 7.990',
-    image: '/motorcycles/xy200.jpg',
-    specs: {
-      engine: '200cc 4T',
-      power: '15 cv',
-      transmission: 'Manual',
-      fuelConsumption: '45 km/l',
-      maxSpeed: '130 km/h',
-    },
-    description: 'Maior cilindrada, maior performance. Ideal para quem quer mais potência.',
+    id: 'jef-150s',
+    name: 'JEF 150S',
+    category: 'Street | Painel Digital',
+    price: 'Consulte',
+    motorizacao: [
+      { label: 'Cilindrada', value: '149 cc' },
+      { label: 'Potência Máx.', value: '10,3 CV / 7500 RPM' },
+      { label: 'Torque Máx.', value: '14 Nm / 6000 RPM' },
+      { label: 'Câmbio', value: '5 Marchas' },
+    ],
+    estrutura: [
+      { label: 'Freios (D/T)', value: 'Disco / Tambor' },
+      { label: 'Tanque', value: '12 L' },
+      { label: 'Peso', value: '121 kg' },
+    ],
   },
   {
-    id: '4',
-    name: 'Shineray XY 250',
-    model: 'XY250-10D',
-    year: 2024,
-    price: 'A partir de R$ 9.990',
-    image: '/motorcycles/xy250.jpg',
-    specs: {
-      engine: '250cc 4T',
-      power: '20 cv',
-      transmission: 'Manual',
-      fuelConsumption: '40 km/l',
-      maxSpeed: '140 km/h',
-    },
-    description: 'Performance e conforto combinados. A escolha dos motoqueiros mais exigentes.',
+    id: 'jet-50s',
+    name: 'JET 50S',
+    category: 'CUB | Super Econômica',
+    price: 'Consulte',
+    motorizacao: [
+      { label: 'Cilindrada', value: '49 cc' },
+      { label: 'Potência Máx.', value: '2,7 CV / 8000 RPM' },
+      { label: 'Câmbio', value: '4 Marchas' },
+      { label: 'Embreagem', value: 'Semi Automática' },
+    ],
+    estrutura: [
+      { label: 'Freios (D/T)', value: 'Disco / Tambor' },
+      { label: 'Tanque', value: '3 L' },
+      { label: 'Peso', value: '106 kg' },
+    ],
+  },
+  {
+    id: 'jef-150s-efi',
+    name: 'JEF 150S EFI',
+    category: 'Street | Injeção Eletrônica',
+    price: 'Consulte',
+    motorizacao: [
+      { label: 'Cilindrada', value: '149 cc (Injeção Eletrônica)' },
+      { label: 'Potência Máx.', value: '10,3 CV / 7500 RPM' },
+      { label: 'Torque Máx.', value: '14 Nm / 6000 RPM' },
+      { label: 'Câmbio', value: '5 Marchas' },
+    ],
+    estrutura: [
+      { label: 'Freios (D/T)', value: 'Disco / Tambor' },
+      { label: 'Tanque', value: '12 L' },
+      { label: 'Peso', value: '121 kg' },
+    ],
+  },
+  {
+    id: 'rio-125-efi',
+    name: 'RIO 125 EFI',
+    category: 'CUB | Design Clássico',
+    price: 'Consulte',
+    motorizacao: [
+      { label: 'Cilindrada', value: '123.6 cc (Injeção Eletrônica)' },
+      { label: 'Câmbio', value: '4 Marchas' },
+      { label: 'Partida', value: 'Elétrica / Pedal' },
+      { label: 'Embreagem', value: 'Semi Automática' },
+    ],
+    estrutura: [
+      { label: 'Freios (D/T)', value: 'Disco CBS / Tambor' },
+      { label: 'Rodas', value: 'Liga Leve' },
+    ],
+  },
+  {
+    id: 'shi-175s-efi',
+    name: 'SHI 175S EFI',
+    category: 'Trail | Injeção Eletrônica',
+    price: 'Consulte',
+    motorizacao: [
+      { label: 'Cilindrada', value: '175 cc (Injeção Eletrônica)' },
+      { label: 'Tipo', value: 'Monocilíndrico, 4T, 2V, OHC' },
+      { label: 'Câmbio', value: '5 Marchas' },
+    ],
+    estrutura: [
+      { label: 'Freios (D/T)', value: 'Disco CBS / Disco CBS' },
+      { label: 'Suspensão Diant.', value: 'Garfo Telescópico invertido' },
+    ],
+  },
+  {
+    id: 'free-150-efi',
+    name: 'FREE 150 EFI',
+    category: 'Scooter | Agilidade Urbana',
+    price: 'Consulte',
+    motorizacao: [
+      { label: 'Cilindrada', value: '149 cc (Injeção Eletrônica)' },
+      { label: 'Câmbio', value: 'Automático (CVT)' },
+      { label: 'Partida', value: 'Elétrica e Pedal' },
+    ],
+    estrutura: [
+      { label: 'Freios (D/T)', value: 'Disco CBS / Tambor' },
+      { label: 'Painel', value: '100% Digital' },
+    ],
+  },
+  {
+    id: 'jet-125ss-efi',
+    name: 'JET 125SS EFI',
+    category: 'CUB | Potência e Economia',
+    price: 'Consulte',
+    motorizacao: [
+      { label: 'Cilindrada', value: '125 cc (Injeção Eletrônica)' },
+      { label: 'Potência Máx.', value: '7,2 cv / 7500 RPM' },
+      { label: 'Câmbio', value: '4 Marchas' },
+      { label: 'Embreagem', value: 'Semi Automática' },
+    ],
+    estrutura: [
+      { label: 'Freios (D/T)', value: 'Disco / Tambor' },
+      { label: 'Painel', value: 'Digital' },
+    ],
+  },
+  {
+    id: 'new-jet',
+    name: 'NEW JET',
+    category: 'CUB | O Novo Clássico',
+    price: 'Consulte',
+    motorizacao: [
+      { label: 'Cilindrada', value: '125 cc / 50 cc' },
+      { label: 'Câmbio', value: '4 Marchas' },
+      { label: 'Embreagem', value: 'Semi Automática' },
+      { label: 'Partida', value: 'Elétrica e Pedal' },
+    ],
+    estrutura: [
+      { label: 'Freios (D/T)', value: 'Disco / Tambor' },
+      { label: 'Painel', value: 'Digital Reformulado' },
+    ],
   },
 ]

@@ -26,8 +26,8 @@ export async function POST(request: NextRequest) {
 
     // Send email to admin
     const adminResponse = await resend.emails.send({
-      from: 'contato@vrmultimarcas.com.br',
-      to: 'contato@vrmultimarcas.com.br',
+      from: 'contato@vrmultimarcassc.com.br',
+      to: 'contato@vrmultimarcassc.com.br',
       subject: `Nova mensagem de contato de ${name}`,
       html: `
         <h2>Nova Mensagem de Contato</h2>
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email to user
     await resend.emails.send({
-      from: 'contato@vrmultimarcas.com.br',
+      from: 'contato@vrmultimarcassc.com.br',
       to: email,
       subject: 'Recebemos sua mensagem - VR Multimarcas',
       html: `
