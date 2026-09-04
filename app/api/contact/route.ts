@@ -1,8 +1,6 @@
 import { Resend } from 'resend'
 import { NextRequest, NextResponse } from 'next/server'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 interface ContactRequest {
   name: string
   email: string
@@ -23,6 +21,16 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
+
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not configured')
+      return NextResponse.json(
+        { error: 'Email service is not configured' },
+        { status: 500 }
+      )
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     // Send email to admin
     const adminResponse = await resend.emails.send({

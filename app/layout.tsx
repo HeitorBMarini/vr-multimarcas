@@ -8,6 +8,7 @@ import { FloatingWhatsApp } from '@/components/floating-whatsapp'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://vrmultimarcassc.com.br'),
   title: 'VR Multimarcas | Sua Moto é Aqui',
   description: 'Revenda de motos Shineray 0km em Florianópolis. Financiamento, garantia e test drive. Conquiste sua moto agora!',
   keywords: ['motos', 'shineray', 'florianópolis', 'ingleses', 'revenda', 'zero km', 'financiamento'],
