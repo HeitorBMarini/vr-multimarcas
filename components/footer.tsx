@@ -60,8 +60,8 @@ export function Footer() {
               <div className="font-semibold">Multimarcas</div>
             </Link>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Sua concessionária de confiança em Florianópolis. Motos Shineray
-              0km com financiamento facilitado e test drive gratuito.
+              Sua concessionária de confiança em Santo Amaro, São Paulo. Motos
+              Shineray 0km com financiamento facilitado e test drive gratuito.
             </p>
 
             {/* Contact Info */}
@@ -85,8 +85,8 @@ export function Footer() {
               <div className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
                 <div>
-                  <p>Servidão Três Marias, 715 - Sala 03</p>
-                  <p>Florianópolis - SC</p>
+                  <p>Santo Amaro</p>
+                  <p>São Paulo - SP</p>
                 </div>
               </div>
             </div>

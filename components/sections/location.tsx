@@ -15,8 +15,8 @@ export function LocationSection() {
     {
       icon: MapPin,
       title: 'Endereço',
-      content: 'Servidão Três Marias, 715 - Sala 03',
-      subContent: 'Ingleses, Florianópolis - SC',
+      content: 'Santo Amaro',
+      subContent: 'São Paulo - SP',
     },
     {
       icon: Phone,
@@ -71,7 +71,7 @@ export function LocationSection() {
             className="rounded-2xl overflow-hidden border border-border h-96 lg:h-full min-h-96"
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.364955799799!2d-48.40455502454519!3d-27.457850876326162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95274116c4c8d203%3A0x7d6fbfd6ab8f3dd0!2sServid%C3%A3o%20Tr%C3%AAs%20Marias%2C%20715%20-%20Ingleses%20Norte%2C%20Florian%C3%B3polis%20-%20SC%2C%2088058-648!5e0!3m2!1spt-BR!2sbr!4v1709413245678!5m2!1spt-BR!2sbr"
+              src="https://maps.google.com/maps?q=Santo+Amaro%2C+S%C3%A3o+Paulo+-+SP&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}

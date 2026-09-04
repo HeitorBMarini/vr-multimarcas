@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL('https://vrmultimarcassc.com.br'),
   title: 'VR Multimarcas | Sua Moto é Aqui',
-  description: 'Revenda de motos Shineray 0km em Florianópolis. Financiamento, garantia e test drive. Conquiste sua moto agora!',
-  keywords: ['motos', 'shineray', 'florianópolis', 'ingleses', 'revenda', 'zero km', 'financiamento'],
+  description: 'Revenda de motos Shineray 0km em Santo Amaro, São Paulo. Financiamento, garantia e test drive. Conquiste sua moto agora!',
+  keywords: ['motos', 'shineray', 'são paulo', 'santo amaro', 'revenda', 'zero km', 'financiamento'],
   authors: [{ name: 'VR Multimarcas' }],
   creator: 'VR Multimarcas',
   publisher: 'VR Multimarcas',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     locale: 'pt_BR',
     url: 'https://vrmultimarcassc.com.br',
     title: 'VR Multimarcas | Sua Moto é Aqui',
-    description: 'Revenda de motos Shineray 0km em Florianópolis',
+    description: 'Revenda de motos Shineray 0km em Santo Amaro, São Paulo',
     images: [
       {
         url: '/og-image.jpg',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'VR Multimarcas | Sua Moto é Aqui',
-    description: 'Revenda de motos Shineray 0km em Florianópolis',
+    description: 'Revenda de motos Shineray 0km em Santo Amaro, São Paulo',
     images: ['/og-image.jpg'],
   },
   verification: {
@@ -65,15 +65,13 @@ export default function RootLayout({
               telephone: '+5548998146981',
               address: {
                 '@type': 'PostalAddress',
-                streetAddress: 'Servidão Três Marias, 715 - Sala 03',
-                addressLocality: 'Florianópolis',
-                addressRegion: 'SC',
-                postalCode: '88058-648',
+                addressLocality: 'Santo Amaro, São Paulo',
+                addressRegion: 'SP',
                 addressCountry: 'BR',
               },
               areaServed: {
                 '@type': 'City',
-                name: 'Florianópolis',
+                name: 'São Paulo',
               },
             }),
           }}

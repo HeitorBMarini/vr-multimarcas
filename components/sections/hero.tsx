@@ -39,7 +39,7 @@ export function HeroSection() {
           >
             <Zap className="w-4 h-4 text-primary" />
             <span className="text-sm font-semibold text-primary">
-              As melhores motos de Florianópolis
+              As melhores motos de Santo Amaro, São Paulo
             </span>
           </motion.div>
 
