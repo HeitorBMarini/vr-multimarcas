@@ -19,6 +19,7 @@ export const motorcycles: Motorcycle[] = [
     name: 'URBAN 150 EFI',
     category: 'Scooter | Injeção Eletrônica',
     price: 'Consulte',
+    image: '/motorcycles/urban-150.webp',
     motorizacao: [
       { label: 'Cilindrada', value: '149 cc (Injeção Eletrônica)' },
       { label: 'Potência Máx.', value: '12,9 cv / 8500 RPM' },
@@ -36,6 +37,7 @@ export const motorcycles: Motorcycle[] = [
     name: 'SHI 175',
     category: 'Trail | Aventura e Dia a Dia',
     price: 'Consulte',
+    image: '/motorcycles/shi-175.webp',
     motorizacao: [
       { label: 'Cilindrada', value: '175 cc' },
       { label: 'Tipo', value: 'Monocilíndrico, 4T, 2V, OHC' },
@@ -53,6 +55,7 @@ export const motorcycles: Motorcycle[] = [
     name: 'JEF 150S',
     category: 'Street | Painel Digital',
     price: 'Consulte',
+    image: '/motorcycles/jef-150s.webp',
     motorizacao: [
       { label: 'Cilindrada', value: '149 cc' },
       { label: 'Potência Máx.', value: '10,3 CV / 7500 RPM' },
@@ -66,27 +69,11 @@ export const motorcycles: Motorcycle[] = [
     ],
   },
   {
-    id: 'jet-50s',
-    name: 'JET 50S',
-    category: 'CUB | Super Econômica',
-    price: 'Consulte',
-    motorizacao: [
-      { label: 'Cilindrada', value: '49 cc' },
-      { label: 'Potência Máx.', value: '2,7 CV / 8000 RPM' },
-      { label: 'Câmbio', value: '4 Marchas' },
-      { label: 'Embreagem', value: 'Semi Automática' },
-    ],
-    estrutura: [
-      { label: 'Freios (D/T)', value: 'Disco / Tambor' },
-      { label: 'Tanque', value: '3 L' },
-      { label: 'Peso', value: '106 kg' },
-    ],
-  },
-  {
     id: 'jef-150s-efi',
     name: 'JEF 150S EFI',
     category: 'Street | Injeção Eletrônica',
     price: 'Consulte',
+    image: '/motorcycles/jef-150s-efi.webp',
     motorizacao: [
       { label: 'Cilindrada', value: '149 cc (Injeção Eletrônica)' },
       { label: 'Potência Máx.', value: '10,3 CV / 7500 RPM' },
@@ -104,6 +91,7 @@ export const motorcycles: Motorcycle[] = [
     name: 'RIO 125 EFI',
     category: 'CUB | Design Clássico',
     price: 'Consulte',
+    image: '/motorcycles/rio-125-efi.webp',
     motorizacao: [
       { label: 'Cilindrada', value: '123.6 cc (Injeção Eletrônica)' },
       { label: 'Câmbio', value: '4 Marchas' },

@@ -1,14 +1,19 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { motorcycles } from '@/data/motorcycles'
-import { Bike, ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react'
+import { motorcycles as allMotorcycles, type Motorcycle } from '@/data/motorcycles'
+import { ChevronLeft, ChevronRight, MessageCircle, X } from 'lucide-react'
+
+// Só exibimos motos com foto real cadastrada
+const motorcycles = allMotorcycles.filter((moto): moto is Motorcycle & { image: string } =>
+  Boolean(moto.image)
+)
 
 export function MotorcyclesSection() {
-  const [selectedMoto, setSelectedMoto] = useState(motorcycles[0])
+  const [openMoto, setOpenMoto] = useState<(typeof motorcycles)[number] | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const scrollByCard = (direction: 'left' | 'right') => {
@@ -18,14 +23,18 @@ export function MotorcyclesSection() {
     })
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  }
+  useEffect(() => {
+    if (!openMoto) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpenMoto(null)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      document.body.style.overflow = ''
+    }
+  }, [openMoto])
 
   return (
     <section
@@ -56,12 +65,12 @@ export function MotorcyclesSection() {
           </h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-4 rounded-full" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Arraste para o lado e clique em um modelo para ver a ficha técnica
+            Arraste para o lado e clique na foto para ver a ficha técnica
           </p>
         </motion.div>
 
         {/* Motorcycles Carousel */}
-        <div className="relative mb-12">
+        <div className="relative">
           <button
             type="button"
             aria-label="Ver motos anteriores"
@@ -82,30 +91,23 @@ export function MotorcyclesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.4, delay: (index % 4) * 0.08 }}
-                onClick={() => setSelectedMoto(moto)}
-                className={`group cursor-pointer p-6 rounded-xl border transition-all duration-300 flex-shrink-0 snap-start w-72 sm:w-80 ${
-                  selectedMoto.id === moto.id
-                    ? 'border-primary bg-primary/5'
-                    : 'border-border hover:border-primary hover:bg-primary/5'
-                }`}
+                className="group p-6 rounded-xl border border-border hover:border-primary transition-all duration-300 flex-shrink-0 snap-start w-72 sm:w-80"
               >
-                {/* Moto Image */}
-                <div className="mb-4 h-40 flex flex-col items-center justify-center gap-2 rounded-lg overflow-hidden relative bg-white">
-                  {moto.image ? (
-                    <Image
-                      src={moto.image}
-                      alt={moto.name}
-                      fill
-                      className="object-contain p-2"
-                      sizes="320px"
-                    />
-                  ) : (
-                    <div className="flex flex-col items-center justify-center gap-2 w-full h-full bg-secondary">
-                      <Bike className="w-10 h-10 text-muted-foreground" strokeWidth={1.5} />
-                      <span className="text-xs text-muted-foreground">Foto em breve</span>
-                    </div>
-                  )}
-                </div>
+                {/* Moto Image — click to open popup */}
+                <button
+                  type="button"
+                  onClick={() => setOpenMoto(moto)}
+                  aria-label={`Ver ficha técnica da ${moto.name}`}
+                  className="mb-4 h-40 w-full flex items-center justify-center bg-white rounded-lg overflow-hidden relative cursor-zoom-in"
+                >
+                  <Image
+                    src={moto.image}
+                    alt={moto.name}
+                    fill
+                    className="object-contain p-2 transition-transform duration-300 group-hover:scale-105"
+                    sizes="320px"
+                  />
+                </button>
 
                 {/* Content */}
                 <h3 className="text-xl font-bold mb-1">{moto.name}</h3>
@@ -133,9 +135,9 @@ export function MotorcyclesSection() {
                   variant="outline"
                   size="sm"
                   className="w-full"
-                  asChild
+                  onClick={() => setOpenMoto(moto)}
                 >
-                  <a href="#detalhes">Ver Ficha Técnica</a>
+                  Ver Ficha Técnica
                 </Button>
               </motion.div>
             ))}
@@ -151,101 +153,6 @@ export function MotorcyclesSection() {
           </button>
         </div>
 
-        {/* Selected Motorcycle Details */}
-        {selectedMoto && (
-          <motion.div
-            id="detalhes"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-card rounded-2xl p-8 border border-border scroll-mt-24"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Left - Image area */}
-              <div className="flex items-center justify-center rounded-xl relative min-h-[280px] bg-white">
-                {selectedMoto.image ? (
-                  <Image
-                    src={selectedMoto.image}
-                    alt={selectedMoto.name}
-                    fill
-                    className="object-contain p-6"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                ) : (
-                  <div className="flex flex-col items-center justify-center gap-3 w-full h-full bg-secondary rounded-xl">
-                    <Bike className="w-16 h-16 text-muted-foreground" strokeWidth={1.5} />
-                    <span className="text-sm text-muted-foreground">Foto em breve</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Right - Details */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-3xl font-bold mb-2">{selectedMoto.name}</h3>
-                  <p className="text-muted-foreground">{selectedMoto.category}</p>
-                </div>
-
-                <p className="text-2xl font-bold text-primary">
-                  {selectedMoto.price}
-                </p>
-
-                <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-wide text-primary border-b border-border pb-2 mb-3">
-                    Motorização
-                  </h4>
-                  <ul className="space-y-2">
-                    {selectedMoto.motorizacao.map((spec) => (
-                      <li
-                        key={spec.label}
-                        className="flex justify-between text-sm border-b border-border/50 pb-2"
-                      >
-                        <span className="text-muted-foreground">{spec.label}</span>
-                        <span className="font-medium text-right">{spec.value}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-wide text-primary border-b border-border pb-2 mb-3">
-                    Estrutura
-                  </h4>
-                  <ul className="space-y-2">
-                    {selectedMoto.estrutura.map((spec) => (
-                      <li
-                        key={spec.label}
-                        className="flex justify-between text-sm border-b border-border/50 pb-2"
-                      >
-                        <span className="text-muted-foreground">{spec.label}</span>
-                        <span className="font-medium text-right">{spec.value}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* CTA */}
-                <div className="pt-4">
-                  <Button
-                    size="lg"
-                    className="w-full bg-[#25d366] text-white hover:bg-[#20b858]"
-                    asChild
-                  >
-                    <a
-                      href={`https://wa.me/5548998146981?text=${encodeURIComponent(`Olá! Quero saber mais sobre a ${selectedMoto.name}.`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      Falar com Vendedor
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-
         {/* Catalog CTA */}
         <div className="text-center mt-12">
           <Button size="lg" asChild>
@@ -260,6 +167,107 @@ export function MotorcyclesSection() {
           </Button>
         </div>
       </div>
+
+      {/* Popup with full spec sheet */}
+      <AnimatePresence>
+        {openMoto && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setOpenMoto(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-card border border-border rounded-2xl p-6 sm:p-8"
+            >
+              <button
+                type="button"
+                onClick={() => setOpenMoto(null)}
+                aria-label="Fechar"
+                className="absolute top-4 right-4 flex items-center justify-center w-9 h-9 rounded-full bg-secondary text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="relative min-h-[220px] sm:min-h-[280px] bg-white rounded-xl overflow-hidden">
+                  <Image
+                    src={openMoto.image}
+                    alt={openMoto.name}
+                    fill
+                    className="object-contain p-6"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+
+                <div className="space-y-5">
+                  <div>
+                    <h3 className="text-3xl font-bold mb-1">{openMoto.name}</h3>
+                    <p className="text-muted-foreground">{openMoto.category}</p>
+                  </div>
+
+                  <p className="text-2xl font-bold text-primary">{openMoto.price}</p>
+
+                  <div>
+                    <h4 className="text-sm font-semibold uppercase tracking-wide text-primary border-b border-border pb-2 mb-3">
+                      Motorização
+                    </h4>
+                    <ul className="space-y-2">
+                      {openMoto.motorizacao.map((spec) => (
+                        <li
+                          key={spec.label}
+                          className="flex justify-between text-sm border-b border-border/50 pb-2"
+                        >
+                          <span className="text-muted-foreground">{spec.label}</span>
+                          <span className="font-medium text-right">{spec.value}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-semibold uppercase tracking-wide text-primary border-b border-border pb-2 mb-3">
+                      Estrutura
+                    </h4>
+                    <ul className="space-y-2">
+                      {openMoto.estrutura.map((spec) => (
+                        <li
+                          key={spec.label}
+                          className="flex justify-between text-sm border-b border-border/50 pb-2"
+                        >
+                          <span className="text-muted-foreground">{spec.label}</span>
+                          <span className="font-medium text-right">{spec.value}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <Button
+                    size="lg"
+                    className="w-full bg-[#25d366] text-white hover:bg-[#20b858]"
+                    asChild
+                  >
+                    <a
+                      href={`https://wa.me/5548998146981?text=${encodeURIComponent(`Olá! Quero saber mais sobre a ${openMoto.name}.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      Falar com Vendedor
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
