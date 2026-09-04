@@ -5,7 +5,7 @@ import { useRef, useState } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { motorcycles } from '@/data/motorcycles'
-import { ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react'
+import { Bike, ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react'
 
 export function MotorcyclesSection() {
   const [selectedMoto, setSelectedMoto] = useState(motorcycles[0])
@@ -90,7 +90,7 @@ export function MotorcyclesSection() {
                 }`}
               >
                 {/* Moto Image */}
-                <div className="mb-4 h-40 flex items-center justify-center bg-white rounded-lg overflow-hidden relative">
+                <div className="mb-4 h-40 flex flex-col items-center justify-center gap-2 rounded-lg overflow-hidden relative bg-white">
                   {moto.image ? (
                     <Image
                       src={moto.image}
@@ -100,15 +100,10 @@ export function MotorcyclesSection() {
                       sizes="320px"
                     />
                   ) : (
-                    <motion.div
-                      animate={{
-                        rotate: selectedMoto.id === moto.id ? [0, 5, -5, 0] : 0,
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="text-5xl"
-                    >
-                      🏍️
-                    </motion.div>
+                    <div className="flex flex-col items-center justify-center gap-2 w-full h-full bg-secondary">
+                      <Bike className="w-10 h-10 text-muted-foreground" strokeWidth={1.5} />
+                      <span className="text-xs text-muted-foreground">Foto em breve</span>
+                    </div>
                   )}
                 </div>
 
@@ -167,7 +162,7 @@ export function MotorcyclesSection() {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Left - Image area */}
-              <div className="flex items-center justify-center bg-white rounded-xl relative min-h-[280px]">
+              <div className="flex items-center justify-center rounded-xl relative min-h-[280px] bg-white">
                 {selectedMoto.image ? (
                   <Image
                     src={selectedMoto.image}
@@ -177,19 +172,10 @@ export function MotorcyclesSection() {
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 ) : (
-                  <motion.div
-                    animate={{
-                      y: [0, -20, 0],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                    className="text-9xl py-12"
-                  >
-                    🏍️
-                  </motion.div>
+                  <div className="flex flex-col items-center justify-center gap-3 w-full h-full bg-secondary rounded-xl">
+                    <Bike className="w-16 h-16 text-muted-foreground" strokeWidth={1.5} />
+                    <span className="text-sm text-muted-foreground">Foto em breve</span>
+                  </div>
                 )}
               </div>
 
