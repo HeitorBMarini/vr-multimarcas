@@ -1,3 +1,5 @@
+export const CONTACT_EMAIL = 'edumarcon@fermoto177vrmultimarcas.net.br'
+
 export const WHATSAPP_1 = {
   number: '5511999021179',
   display: '(11) 99902-1179',

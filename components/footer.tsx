@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react'
-import { WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
+import { CONTACT_EMAIL, WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -69,11 +69,11 @@ export function Footer() {
                 <span>{WHATSAPP_2.display}</span>
               </a>
               <a
-                href="mailto:contato@vrmultimarcassc.com.br"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                <span>contato@vrmultimarcassc.com.br</span>
+                <span>{CONTACT_EMAIL}</span>
               </a>
               <div className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />

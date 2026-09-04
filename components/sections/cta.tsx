@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Mail, MessageCircle, CheckCircle } from 'lucide-react'
-import { WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
+import { CONTACT_EMAIL, WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
 
 const contactSchema = z.object({
   name: z.string().min(3, 'Nome deve ter no mínimo 3 caracteres'),
@@ -107,8 +107,8 @@ export function CTASection() {
               icon: Mail,
               title: 'Email',
               description: 'Envie sua mensagem',
-              link: 'mailto:contato@vrmultimarcassc.com.br',
-              text: 'contato@vrmultimarcassc.com.br',
+              link: `mailto:${CONTACT_EMAIL}`,
+              text: CONTACT_EMAIL,
             },
           ].map((item, index) => {
             const Icon = item.icon

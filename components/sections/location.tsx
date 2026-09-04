@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
+import { CONTACT_EMAIL, WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
 import {
   MapPin,
   Clock,
@@ -22,8 +22,8 @@ export function LocationSection() {
     {
       icon: Mail,
       title: 'E-mail',
-      content: 'contato@vrmultimarcassc.com.br',
-      link: 'mailto:contato@vrmultimarcassc.com.br',
+      content: CONTACT_EMAIL,
+      link: `mailto:${CONTACT_EMAIL}`,
     },
     {
       icon: Clock,

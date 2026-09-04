@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 import { NextRequest, NextResponse } from 'next/server'
-import { WHATSAPP_1 } from '@/lib/contact'
+import { CONTACT_EMAIL, WHATSAPP_1 } from '@/lib/contact'
 
 interface ContactRequest {
   name: string
@@ -35,8 +35,8 @@ export async function POST(request: NextRequest) {
 
     // Send email to admin
     const adminResponse = await resend.emails.send({
-      from: 'contato@vrmultimarcassc.com.br',
-      to: 'contato@vrmultimarcassc.com.br',
+      from: CONTACT_EMAIL,
+      to: CONTACT_EMAIL,
       subject: `Nova mensagem de contato de ${name}`,
       html: `
         <h2>Nova Mensagem de Contato</h2>
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email to user
     await resend.emails.send({
-      from: 'contato@vrmultimarcassc.com.br',
+      from: CONTACT_EMAIL,
       to: email,
       subject: 'Recebemos sua mensagem - VR Multimarcas',
       html: `
