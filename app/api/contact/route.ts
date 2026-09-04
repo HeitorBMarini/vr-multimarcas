@@ -1,6 +1,7 @@
 import { Resend } from 'resend'
 import { NextRequest, NextResponse } from 'next/server'
-import { CONTACT_EMAIL, WHATSAPP_1 } from '@/lib/contact'
+import { CONTACT_EMAIL, WHATSAPP_1, whatsappLink } from '@/lib/contact'
+import { emailLayout, infoRow } from '@/lib/email-template'
 
 interface ContactRequest {
   name: string
@@ -35,33 +36,46 @@ export async function POST(request: NextRequest) {
 
     // Send email to admin
     const adminResponse = await resend.emails.send({
-      from: CONTACT_EMAIL,
+      from: `VR Multimarcas <${CONTACT_EMAIL}>`,
       to: CONTACT_EMAIL,
       subject: `Nova mensagem de contato de ${name}`,
-      html: `
-        <h2>Nova Mensagem de Contato</h2>
-        <p><strong>Nome:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Telefone:</strong> ${phone}</p>
-        <p><strong>Mensagem:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `,
+      html: emailLayout(
+        `Nova mensagem de ${name}`,
+        `
+          <h2 style="margin:0 0 16px 0; color:#ce9d28; font-size: 20px;">Nova mensagem de contato</h2>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+            ${infoRow('Nome', name)}
+            ${infoRow('Email', email)}
+            ${infoRow('Telefone', phone)}
+          </table>
+          <p style="margin: 20px 0 6px 0; color:#9a9a9a; font-size: 13px;">Mensagem:</p>
+          <p style="margin:0; padding: 16px; background-color:#000000; border: 1px solid #222222; border-radius: 8px; color:#efefef; font-size: 14px; line-height: 1.6;">
+            ${message.replace(/\n/g, '<br>')}
+          </p>
+        `
+      ),
     })
 
     // Send confirmation email to user
     await resend.emails.send({
-      from: CONTACT_EMAIL,
+      from: `VR Multimarcas <${CONTACT_EMAIL}>`,
       to: email,
       subject: 'Recebemos sua mensagem - VR Multimarcas',
-      html: `
-        <h2>Obrigado por entrar em contato!</h2>
-        <p>Olá ${name},</p>
-        <p>Recebemos sua mensagem e entraremos em contato em breve.</p>
-        <p>Se preferir, você também pode nos contatar via WhatsApp:</p>
-        <p><strong>${WHATSAPP_1.display}</strong></p>
-        <br>
-        <p>Atenciosamente,<br>Equipe VR Multimarcas</p>
-      `,
+      html: emailLayout(
+        'Recebemos sua mensagem',
+        `
+          <h2 style="margin:0 0 16px 0; color:#ce9d28; font-size: 20px;">Obrigado por entrar em contato!</h2>
+          <p style="margin:0 0 12px 0;">Olá ${name},</p>
+          <p style="margin:0 0 20px 0;">Recebemos sua mensagem e nossa equipe vai te responder em breve.</p>
+          <p style="margin:0 0 8px 0; color:#9a9a9a; font-size: 13px;">Se preferir, fale com a gente agora pelo WhatsApp:</p>
+          <p style="margin:0 0 20px 0;">
+            <a href="${whatsappLink(WHATSAPP_1.number)}" style="display:inline-block; background-color:#ce9d28; color:#000000; font-weight:bold; text-decoration:none; padding: 12px 24px; border-radius: 999px; font-size: 14px;">
+              Falar no WhatsApp
+            </a>
+          </p>
+          <p style="margin:0; color:#efefef;">Atenciosamente,<br>Equipe VR Multimarcas</p>
+        `
+      ),
     })
 
     return NextResponse.json(

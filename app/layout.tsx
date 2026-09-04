@@ -10,7 +10,7 @@ import { WHATSAPP_1 } from '@/lib/contact'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://vrmultimarcassc.com.br'),
+  metadataBase: new URL('https://fermoto177vrmultimarcas.net.br'),
   title: 'VR Multimarcas | Sua Moto é Aqui',
   description: 'Revenda de motos Shineray 0km em Santo Amaro, São Paulo. Financiamento, garantia e test drive. Conquiste sua moto agora!',
   keywords: ['motos', 'shineray', 'são paulo', 'santo amaro', 'revenda', 'zero km', 'financiamento'],
@@ -21,26 +21,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    url: 'https://vrmultimarcassc.com.br',
+    url: 'https://fermoto177vrmultimarcas.net.br',
     title: 'VR Multimarcas | Sua Moto é Aqui',
     description: 'Revenda de motos Shineray 0km em Santo Amaro, São Paulo',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'VR Multimarcas',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'VR Multimarcas | Sua Moto é Aqui',
     description: 'Revenda de motos Shineray 0km em Santo Amaro, São Paulo',
-    images: ['/og-image.jpg'],
-  },
-  verification: {
-    google: 'your-google-verification-code',
   },
 }
 
@@ -54,7 +42,6 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -63,7 +50,7 @@ export default function RootLayout({
               '@type': 'LocalBusiness',
               name: 'VR Multimarcas',
               description: 'Revenda de motos Shineray 0km',
-              url: 'https://vrmultimarcassc.com.br',
+              url: 'https://fermoto177vrmultimarcas.net.br',
               telephone: `+${WHATSAPP_1.number}`,
               address: {
                 '@type': 'PostalAddress',
