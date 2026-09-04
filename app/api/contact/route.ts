@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     })
 
     return NextResponse.json(
-      { success: true, id: adminResponse.id },
+      { success: true, id: adminResponse.data?.id },
       { status: 200 }
     )
   } catch (error) {
