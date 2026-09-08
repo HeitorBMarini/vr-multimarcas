@@ -24,11 +24,20 @@ export const metadata: Metadata = {
     url: 'https://fermoto177vrmultimarcas.net.br',
     title: 'VR Multimarcas | Sua Moto é Aqui',
     description: 'Revenda de motos Shineray 0km em Santo Amaro, São Paulo',
+    images: [
+      {
+        url: '/motorcycles/jef-150s-efi.webp',
+        width: 1200,
+        height: 630,
+        alt: 'VR Multimarcas - Motos Shineray 0km',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'VR Multimarcas | Sua Moto é Aqui',
     description: 'Revenda de motos Shineray 0km em Santo Amaro, São Paulo',
+    images: ['/motorcycles/jef-150s-efi.webp'],
   },
 }
 
