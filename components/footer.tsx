@@ -70,10 +70,10 @@ export function Footer() {
               </a>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-start gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
-                <Mail className="w-4 h-4" />
-                <span>{CONTACT_EMAIL}</span>
+                <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                <span className="break-all">{CONTACT_EMAIL}</span>
               </a>
               <div className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />

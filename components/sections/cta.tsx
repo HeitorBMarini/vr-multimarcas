@@ -128,12 +128,12 @@ export function CTASection() {
                   <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
                     <Icon className="w-6 h-6 text-primary" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <h3 className="font-semibold mb-1">{item.title}</h3>
                     <p className="text-sm text-muted-foreground mb-2">
                       {item.description}
                     </p>
-                    <p className="text-primary font-medium group-hover:underline">
+                    <p className="text-primary font-medium group-hover:underline break-all">
                       {item.text}
                     </p>
                   </div>

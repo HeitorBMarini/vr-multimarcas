@@ -92,7 +92,7 @@ export function LocationSection() {
                   <MapPin className="w-6 h-6 text-primary" />
                 </div>
               </div>
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <h3 className="font-semibold mb-1">Endereço</h3>
                 <p className="text-foreground font-medium">{ADDRESS_LINE}</p>
                 <p className="text-sm text-muted-foreground mt-1">{ADDRESS_CITY}</p>
@@ -138,19 +138,19 @@ export function LocationSection() {
                     </div>
                   </div>
 
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <h3 className="font-semibold mb-1">{info.title}</h3>
                     {info.link ? (
                       <a
                         href={info.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-primary hover:underline font-medium"
+                        className="text-primary hover:underline font-medium break-all"
                       >
                         {info.content}
                       </a>
                     ) : (
-                      <p className="text-foreground font-medium">{info.content}</p>
+                      <p className="text-foreground font-medium break-all">{info.content}</p>
                     )}
                     {info.subContent && (
                       <p className="text-sm text-muted-foreground mt-1">
