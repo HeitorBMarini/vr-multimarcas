@@ -2,8 +2,9 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { MapPin, Phone, Mail } from 'lucide-react'
+import { MapPin, Mail } from 'lucide-react'
 import { CONTACT_EMAIL, WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
+import { WhatsAppIcon } from '@/components/icons/whatsapp-icon'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -50,7 +51,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Phone className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4" />
                 <span>{WHATSAPP_1.display}</span>
               </a>
               <a
@@ -59,7 +60,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Phone className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4" />
                 <span>{WHATSAPP_2.display}</span>
               </a>
               <a

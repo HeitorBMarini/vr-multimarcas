@@ -8,8 +8,9 @@ import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Mail, MessageCircle, CheckCircle } from 'lucide-react'
+import { Mail, CheckCircle } from 'lucide-react'
 import { CONTACT_EMAIL, WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
+import { WhatsAppIcon } from '@/components/icons/whatsapp-icon'
 
 const contactSchema = z.object({
   name: z.string().min(3, 'Nome deve ter no mínimo 3 caracteres'),
@@ -90,14 +91,14 @@ export function CTASection() {
           {/* Quick Contact */}
           {[
             {
-              icon: MessageCircle,
+              icon: WhatsAppIcon,
               title: 'WhatsApp',
               description: 'Resposta rápida',
               link: whatsappLink(WHATSAPP_1.number),
               text: WHATSAPP_1.display,
             },
             {
-              icon: MessageCircle,
+              icon: WhatsAppIcon,
               title: 'WhatsApp',
               description: 'Resposta rápida',
               link: whatsappLink(WHATSAPP_2.number),
