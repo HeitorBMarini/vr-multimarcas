@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   creator: 'VR Multimarcas',
   publisher: 'VR Multimarcas',
   robots: 'index, follow',
+  verification: {
+    google: 'K6H855ZHb-3wO_JeKstHdgJdyAj2fi_gldmP-zhQVvM',
+  },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
