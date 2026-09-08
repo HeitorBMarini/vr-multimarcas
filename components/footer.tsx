@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react'
+import { MapPin, Phone, Mail } from 'lucide-react'
 import { CONTACT_EMAIL, WHATSAPP_2, WHATSAPP_1, whatsappLink } from '@/lib/contact'
 
 export function Footer() {
@@ -18,12 +18,6 @@ export function Footer() {
         { label: 'Contato', href: '#contato' },
       ],
     },
-  ]
-
-  const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
   ]
 
   return (
@@ -115,39 +109,16 @@ export function Footer() {
         <div className="border-t border-border my-8" />
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center justify-center">
           {/* Copyright + Legal */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-muted-foreground text-sm text-center md:text-left"
+            className="text-muted-foreground text-sm text-center"
           >
             <p>© {currentYear} VR Multimarcas. Todos os direitos reservados.</p>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex items-center gap-4"
-          >
-            {socialLinks.map((social) => {
-              const Icon = social.icon
-              return (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-secondary/20 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
-              )
-            })}
           </motion.div>
         </div>
       </div>
