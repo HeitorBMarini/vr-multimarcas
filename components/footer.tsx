@@ -124,7 +124,6 @@ export function Footer() {
             transition={{ duration: 0.5 }}
             className="text-muted-foreground text-sm text-center md:text-left"
           >
-            <p className="font-semibold">C.CRUZ APOIO ADMINISTRATIVO LTDA</p>
             <p>© {currentYear} VR Multimarcas. Todos os direitos reservados.</p>
           </motion.div>
 
