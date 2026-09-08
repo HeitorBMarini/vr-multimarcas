@@ -125,7 +125,6 @@ export function Footer() {
             className="text-muted-foreground text-sm text-center md:text-left"
           >
             <p className="font-semibold">C.CRUZ APOIO ADMINISTRATIVO LTDA</p>
-            <p>CNPJ: 64.626.970/0001-80</p>
             <p>© {currentYear} VR Multimarcas. Todos os direitos reservados.</p>
           </motion.div>
 
