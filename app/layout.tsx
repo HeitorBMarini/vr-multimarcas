@@ -97,7 +97,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-background text-foreground`}>
         <ScrollReset />
         <Navbar />
-        <main className="min-h-screen">
+        <main className="min-h-dvh">
           {children}
         </main>
         <Footer />

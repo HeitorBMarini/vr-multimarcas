@@ -7,7 +7,7 @@ import { ArrowRight, Zap } from 'lucide-react'
 
 export function HeroSection() {
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden pt-20">
+    <section id="inicio" className="relative min-h-dvh flex items-center overflow-hidden pt-20">
       {/* Background video */}
       <div className="absolute inset-0">
         <video
